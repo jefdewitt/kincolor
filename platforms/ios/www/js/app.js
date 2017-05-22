@@ -4,7 +4,7 @@ angular.module('kinColor', [])
 
 var kinColor = angular.module('kinColor')
 
-kinColor.directive('colorInput', function() {
+.directive('colorInput', function() {
     console.log('22222222')
     return {
         template: 'Input Color',
@@ -14,6 +14,6 @@ kinColor.directive('colorInput', function() {
     };
 })
 
-kinColor.controller('colorCtrl', function($scope) {
+.controller('colorCtrl', function($scope) {
     $scope.greetMe = "Yay, it's working!";
 });

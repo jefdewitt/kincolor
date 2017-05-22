@@ -16,9 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- console.log('22222222')
 var app = {
-     console.log('22222222')
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -30,6 +28,11 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        angular.element(document).ready(function () {
+
+           angular.bootstrap(document, ["kinColor"]);
+
+       });
     },
 
     // Update DOM on a Received Event
