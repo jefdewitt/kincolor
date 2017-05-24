@@ -2,17 +2,31 @@
 angular.module('kinColor',[])
 
 .directive('colorInput', function() {
+    // function newFunction($scope, elem, attrs) {
+    //   var currentColor = $scope.colorValue;
+    //   if (currentColor) {
+    //     $scope.greetMe = currentColor;
+    //   } else {
+    //     $scope.greetMe = 'no color input yet';
+    //   }
+    // }
     return {
-        template: '<form><label name="color"><h1>Input Color</h1></label><input ng-model="colorValue" name="color"></form><div><h1>{{ greetMe }}</h1></div>',
+        template: '<form><label name="color"><h1>Input Color</h1></label><input ng-model="color.value" name="color"></form><div><h1>{{ greetMe }}</h1></div>',
         controller: 'colorCtrl',
-        $scope : {},
+        $scope : {
+            color: '@'
+        },
+        // link: newFunction,
         restrict: 'AE'
     };
 })
 
-.controller('colorCtrl', function($scope) {
+.controller('colorCtrl', ['$scope', function($scope) {
 
-    console.log($scope.colorValue);
+    $scope.color = {
+        value : 'green'
+    };
+    console.log($scope.form.foo);
     $scope.greetMe = 'heres where it should be!';
 
     var currentColor = $scope.colorValue;
@@ -60,4 +74,4 @@ angular.module('kinColor',[])
     // var rgbColor = hexToRgb(currentColor);
     // $scope.greetMe = currentColor;
 
-});
+}]);
