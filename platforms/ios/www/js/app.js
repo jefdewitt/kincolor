@@ -10,31 +10,38 @@ angular.module('kinColor',[])
     //     $scope.greetMe = 'no color input yet';
     //   }
     // }
+    function shareFunction(scope, elm, attrs) {
+      // console.log(scope);
+      // console.log(elm);
+      // console.log(attrs);
+      console.log(scope.color);
+      // console.log($scope.color.value);
+    }
     return {
-        template: '<form><label name="color"><h1>Input Color</h1></label><input ng-model="color.value" name="color"></form><div><h1>{{ greetMe }}</h1></div>',
+        template: '<form><label name="color"><h1>Input Color</h1></label><input ng-model="color.value" ng-change="updateFoo(color.value)" name="color"></form><div><h1  >{{ greetMe }}</h1></div>',
         controller: 'colorCtrl',
-        $scope : {
-            color: '@'
-        },
-        // link: newFunction,
+        // scope: true,
+        link: shareFunction,
         restrict: 'AE'
     };
 })
 
-.controller('colorCtrl', ['$scope', function($scope) {
+.controller('colorCtrl', function($scope) {
 
-    $scope.color = {
-        value : 'green'
-    };
-    console.log($scope.form.foo);
     $scope.greetMe = 'heres where it should be!';
 
-    var currentColor = $scope.colorValue;
-    if (currentColor) {
-      $scope.greetMe = currentColor;
-    } else {
-      $scope.greetMe = 'no color input yet';
+    $scope.updateFoo = function (newFoo) {
+      console.log(newFoo);
+
+        $scope.greetMe = newFoo;
     }
+
+    // var currentColor = $scope.color.value;
+    // if (currentColor) {
+    //   $scope.greetMe = currentColor;
+    // } else {
+    //   $scope.greetMe = 'no color input yet';
+    // }
 
     // var convert = sharedObject;
     // console.info(convert);
@@ -74,4 +81,4 @@ angular.module('kinColor',[])
     // var rgbColor = hexToRgb(currentColor);
     // $scope.greetMe = currentColor;
 
-}]);
+});
