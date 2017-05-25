@@ -15,11 +15,13 @@ angular.module('kinColor',[])
 
     $scope.updateFoo = function (newFoo) {
 
-        // if ($scope.type.value) {
-        // } else {
+        if ($scope.type.value) {
+            var hexColor = componentToHex(newFoo);
+            $scope.newColor = hexColor;
+        } else {
             var rgbColor = convertHex(newFoo);
             $scope.newColor = rgbColor;
-        // }
+        }
     }
 
     $scope.test = function() {
@@ -27,12 +29,15 @@ angular.module('kinColor',[])
     }
 
     function componentToHex(c) {
+        console.log('step 2')
       var hex = c.toString(16);
       return hex.length == 1 ? "0" + hex : hex;
     }
 
     function rgbToHex(r, g, b) {
+        console.log('step 1')
         return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        console.log(componentToHex(r));
     }
 
     function convertHex(hex){
