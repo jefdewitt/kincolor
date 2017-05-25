@@ -16,7 +16,7 @@ angular.module('kinColor',[])
     $scope.updateFoo = function (newFoo) {
 
         if ($scope.type.value) {
-            var hexColor = componentToHex(newFoo);
+            var hexColor = rgb2Hex(newFoo);
             $scope.newColor = hexColor;
         } else {
             var rgbColor = convertHex(newFoo);
@@ -24,20 +24,16 @@ angular.module('kinColor',[])
         }
     }
 
-    $scope.test = function() {
-        console.log($scope.type.value);
-    }
+    // $scope.test = function() {
+    //     console.log($scope.type.value);
+    // }
 
-    function componentToHex(c) {
-        console.log('step 2')
-      var hex = c.toString(16);
-      return hex.length == 1 ? "0" + hex : hex;
-    }
-
-    function rgbToHex(r, g, b) {
-        console.log('step 1')
-        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-        console.log(componentToHex(r));
+    function rgb2Hex(rgb){
+        rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+        return (rgb && rgb.length === 4) ? "#" +
+        ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+        ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
     }
 
     function convertHex(hex){
