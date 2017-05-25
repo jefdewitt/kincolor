@@ -17,17 +17,17 @@ angular.module('kinColor',[])
 
     $scope.updateFoo = function (nextColor) {
 
-        if ($scope.check != false && nextColor.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)) {
+        if ($scope.check === true && nextColor.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)) {
             var hexColor = rgb2Hex(nextColor);
             $scope.newColor = hexColor;
-        } else if ($scope.check != false) {
+        } else if ($scope.check === true) {
             $scope.newColor = 'Value must in format rgb(xxx,xxx,xxx) or rgba(xxx,xxx,xxx)';
         }
 
-        if ($scope.check === false && nextColor.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)) {
+        if ($scope.check != true && nextColor.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)) {
             var rgbColor = convertHex(nextColor);
             $scope.newColor = rgbColor;
-        } else if ($scope.check === false) {
+        } else if ($scope.check != true) {
             $scope.newColor = 'Value must in format #xxxxxx';
         }
     }
