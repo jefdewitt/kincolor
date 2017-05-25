@@ -16,7 +16,7 @@ angular.module('kinColor',[])
     $scope.updateFoo = function (newFoo) {
 
         if ($scope.type.value) {
-            var hexColor = componentToHex(newFoo);
+            var hexColor = rgbToHex(newFoo);
             $scope.newColor = hexColor;
         } else {
             var rgbColor = convertHex(newFoo);
