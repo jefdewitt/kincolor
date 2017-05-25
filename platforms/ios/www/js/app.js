@@ -3,7 +3,7 @@ angular.module('kinColor',[])
 
 .directive('colorInput', function() {
     return {
-        template: '<form><label name="color"><h1>Input Color</h1></label><input ng-model="color.value" ng-change="updateFoo(color.value)" name="color"><label name="type">rgb<input type="checkbox" ng-click="test()" ng-model="type.value"><label></form><div><h1>{{ newColor }}</h1></div>',
+        template: '<form><label name="color"><h1>Enter Color</h1></label><input ng-model="color.value" name="color"><div><label name="type">rgb</label><input type="checkbox" ng-click="test()" ng-model="check"><input type="button" value="go" ng-click="updateFoo(color.value)"></div></form><div><h1>{{ newColor }}</h1></div>',
         controller: 'colorCtrl',
         restrict: 'AE'
     };
@@ -11,22 +11,26 @@ angular.module('kinColor',[])
 
 .controller('colorCtrl', function($scope) {
 
-    $scope.newColor = 'The input field is empty!';
+    $scope.newColor = '';
 
-    $scope.updateFoo = function (newFoo) {
+    $scope.updateFoo = function (nextColor) {
 
-        if ($scope.type.value) {
-            var hexColor = rgb2Hex(newFoo);
+      console.log($scope.check);
+
+        if ($scope.check != false && nextColor.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)) {
+            var hexColor = rgb2Hex(nextColor);
             $scope.newColor = hexColor;
-        } else {
-            var rgbColor = convertHex(newFoo);
+        } else if ($scope.check != false || $scope.check != undefined) {
+            $scope.newColor = 'Value must in format rgb(xxx,xxx,xxx) or rgba(xxx,xxx,xxx)';
+        }
+
+        if ( ($scope.check === false || $scope.check != undefined) && nextColor.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)) {
+            var rgbColor = convertHex(nextColor);
             $scope.newColor = rgbColor;
+        } else if ($scope.check === false) {
+            $scope.newColor = 'Value must in format #xxxxxx';
         }
     }
-
-    // $scope.test = function() {
-    //     console.log($scope.type.value);
-    // }
 
     function rgb2Hex(rgb){
         rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
@@ -44,6 +48,5 @@ angular.module('kinColor',[])
         result = 'rgb('+r+','+g+','+b+')';
         return result;
     }
-
 
 });
