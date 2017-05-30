@@ -50,9 +50,15 @@ body {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
     background-size: 40%;
     position:absolute;             /* position in the center of the screen */
+<<<<<<< HEAD
         left:50%;
         top: 25%;
         transform: translateX(-50%);
+=======
+      left:50%;
+      top:50%;
+      transform: translate(-50%, -50%);
+>>>>>>> 0bbc86958a6b7d932858b62929f0dc0ff01bb597
     height:50px;                   /* text area height */
     width: 100%;                   /* text area width */
     text-align:center;
@@ -127,6 +133,7 @@ h1 {
     text-align:center;
 }
 
+<<<<<<< HEAD
 h2 {
     color: #fff;
     font-size:30px;
@@ -136,6 +143,10 @@ h2 {
 p {
     color: #fff;
     text-shadow: 0px 0px 1px #000;
+=======
+color-input input {
+  font-size: 20px;
+>>>>>>> 0bbc86958a6b7d932858b62929f0dc0ff01bb597
 }
 
 .event {
