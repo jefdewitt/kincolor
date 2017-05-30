@@ -48,15 +48,30 @@ body {
 /* Portrait layout (default) */
 .app {
     background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background-size: 40%;
     position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
+        left:50%;
+        top: 25%;
+        transform: translateX(-50%);
     height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
+    width: 100%;                   /* text area width */
     text-align:center;
     padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    /*margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */*/
                                    /* offset horizontal: half of text area width */
+}
+
+/*.app:before {
+    content: 'KinColor';
+    font-size: 30px;
+    position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%);
+}*/
+
+input:placeholder {
+    content: 'Enter Color';
 }
 
 /* Landscape layout (with min-width) */
@@ -69,13 +84,58 @@ body {
     }
 }
 
+#deviceready.blink {
+    position: absolute;
+        left: 50%;
+        top: 55%;
+        transform: translatex(-50%);
+    width: 100%;
+}
+
+form {
+    color: #fff;
+    text-shadow: 0px 0px 1px #000;
+}
+
+form > input {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+form div {
+    display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+form div label {
+    font-weight: 700;
+    padding-top: 3px;
+}
+
+form + div {
+    position: relative;
+    bottom: 20px;
+}
+
 h1 {
-    font-size:24px;
-    font-weight:normal;
+    font-size:36px;
+    font-weight:bold;
     margin:0px;
     overflow:visible;
     padding:0px;
     text-align:center;
+}
+
+h2 {
+    color: #fff;
+    font-size:30px;
+    text-shadow: 0px 0px 1px #000;
+}
+
+p {
+    color: #fff;
+    text-shadow: 0px 0px 1px #000;
 }
 
 .event {

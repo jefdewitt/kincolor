@@ -3,7 +3,7 @@ angular.module('kinColor',[])
 
 .directive('colorInput', function() {
     return {
-        template: '<form><label name="color"><h1>Enter Color</h1></label><input ng-model="color.value" name="color"><div><label name="type">rgb</label><input type="checkbox" ng-click="test()" ng-model="check"><input type="button" value="go" ng-click="updateFoo(color.value)"></div></form><div><h1>{{ newColor }}</h1></div>',
+        template: '<form><label name="color"><h1>KinColor</h1></label><input ng-model="color.value" name="color" placeholder="Enter Color"><div><label name="type">rgb</label><input type="checkbox" ng-click="test()" ng-model="check"><input type="button" value="go" ng-click="updateFoo(color.value)"></div></form><div><h2>{{ newColor }}</h2></div>',
         controller: 'colorCtrl',
         restrict: 'AE'
     };
@@ -12,8 +12,6 @@ angular.module('kinColor',[])
 .controller('colorCtrl', function($scope) {
 
     $scope.newColor = '';
-    // $scope.check ? $scope.newColor = 'Value must in format rgb(xxx,xxx,xxx) or rgba(xxx,xxx,xxx)' :
-    // $scope.newColor = 'Value must in format #xxxxxx';
 
     $scope.updateFoo = function (nextColor) {
 
@@ -21,14 +19,14 @@ angular.module('kinColor',[])
             var hexColor = rgb2Hex(nextColor);
             $scope.newColor = hexColor;
         } else if ($scope.check === true) {
-            $scope.newColor = 'Value must in format rgb(xxx,xxx,xxx) or rgba(xxx,xxx,xxx)';
+            $scope.newColor = 'E.g., rgb(xxx,xxx,xxx)';
         }
 
         if ($scope.check != true && nextColor.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)) {
             var rgbColor = convertHex(nextColor);
             $scope.newColor = rgbColor;
         } else if ($scope.check != true) {
-            $scope.newColor = 'Value must in format #xxxxxx';
+            $scope.newColor = 'E.g., #xxxxxx';
         }
     }
 
